@@ -5,8 +5,6 @@ public class Main {
         String play1;
         String play2;
         String stillPlaying;
-        boolean validMove1 = false;
-        boolean validMove2 = false;
         boolean playing = true;
         Scanner sc = new Scanner(System.in);
 
@@ -15,25 +13,23 @@ public class Main {
                 System.out.println("Player 1, input your move: ");
                 play1 = sc.nextLine();
                 if (play1.equalsIgnoreCase("R") || play1.equalsIgnoreCase("P") || play1.equalsIgnoreCase("S")) {
-                    validMove1 = true;
                 }
                 else {
                     System.out.println("Invalid move! Please only input [R][P][S].");
                 }
             }
-            while (!validMove1);
+            while (!(play1.equalsIgnoreCase("R") || play1.equalsIgnoreCase("P") || play1.equalsIgnoreCase("S")));
 
             do {
                 System.out.println("Player 2, input your move: ");
                 play2 = sc.nextLine();
                 if (play2.equalsIgnoreCase("R") || play2.equalsIgnoreCase("P") || play2.equalsIgnoreCase("S")) {
-                    validMove2 = true;
                 }
                 else {
                     System.out.println("Invalid move! Please only input [R][P][S].");
                 }
             }
-            while (!validMove2);
+            while (!(play2.equalsIgnoreCase("R") || play2.equalsIgnoreCase("P") || play2.equalsIgnoreCase("S")));
 
 
                 if (play1.equalsIgnoreCase("R")) {
@@ -72,16 +68,16 @@ public class Main {
                 }
 
 
-
-            System.out.println("Would you like to continue playing? [Y/N]: ");
-            stillPlaying = sc.nextLine();
-            if (stillPlaying.equalsIgnoreCase("Y")) {
-                validMove1 = false;
-                validMove2 = false;
+            do {
+                System.out.println("Would you like to continue playing? [Y/N]: ");
+                stillPlaying = sc.nextLine();
+                if (stillPlaying.equalsIgnoreCase("Y")) {
+                    playing = true;
+                } else if (stillPlaying.equalsIgnoreCase("N")) {
+                    playing = false;
+                } else System.out.println("Invalid input! Please only input [Y][N].");
             }
-            else if (stillPlaying.equalsIgnoreCase("N")) {
-                playing = false;
-            }
+            while (!(stillPlaying.equalsIgnoreCase("Y") || stillPlaying.equalsIgnoreCase("N")));
         }
         while (playing);
         System.out.println("Thank you for playing! :3");
