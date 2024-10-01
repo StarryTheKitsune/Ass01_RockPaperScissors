@@ -1,19 +1,40 @@
 import java.util.Scanner;
-import java.util.Random;
 public class Main {
     public static void main(String[] args)
     {
-        String play1 = "";
-        String play2 = "";
-        String stillPlaying = "";
+        String play1;
+        String play2;
+        String stillPlaying;
+        boolean validMove1 = false;
+        boolean validMove2 = false;
         boolean playing = true;
+        Scanner sc = new Scanner(System.in);
 
         do {
-            System.out.println("Player 1, input your move: ");
-            Scanner sc = new Scanner(System.in);
-            play1 = sc.nextLine();
-            System.out.println("Player 2, input your move: ");
-            play2 = sc.nextLine();
+            do {
+                System.out.println("Player 1, input your move: ");
+                play1 = sc.nextLine();
+                if (play1.equalsIgnoreCase("R") || play1.equalsIgnoreCase("P") || play1.equalsIgnoreCase("S")) {
+                    validMove1 = true;
+                }
+                else {
+                    System.out.println("Invalid move! Please only input [R][P][S].");
+                }
+            }
+            while (!validMove1);
+
+            do {
+                System.out.println("Player 2, input your move: ");
+                play2 = sc.nextLine();
+                if (play2.equalsIgnoreCase("R") || play2.equalsIgnoreCase("P") || play2.equalsIgnoreCase("S")) {
+                    validMove2 = true;
+                }
+                else {
+                    System.out.println("Invalid move! Please only input [R][P][S].");
+                }
+            }
+            while (!validMove2);
+
 
                 if (play1.equalsIgnoreCase("R")) {
                     if (play2.equalsIgnoreCase("R")) {
@@ -24,9 +45,6 @@ public class Main {
                     }
                     else if (play2.equalsIgnoreCase("S")) {
                         System.out.println("ROCK breaks SCISSORS, Player 1 Wins!");
-                    }
-                    else {
-                        System.out.println("Player 2's input is invalid! Please only input [R] [P] or [S]!");
                     }
                 }
                 else if (play1.equalsIgnoreCase("P")) {
@@ -39,9 +57,7 @@ public class Main {
                     else if (play2.equalsIgnoreCase("S")) {
                         System.out.println("SCISSORS cuts PAPER, Player 2 Wins!");
                     }
-                    else {
-                        System.out.println("Player 2's input is invalid! Please only input [R] [P] or [S]!");
-                    }
+
                 }
                 else if (play1.equalsIgnoreCase("S")) {
                     if (play2.equalsIgnoreCase("R")) {
@@ -53,19 +69,15 @@ public class Main {
                     else if (play2.equalsIgnoreCase("S")) {
                         System.out.println("SCISSORS vs SCISSORS... It's a tie!!");
                     }
-                    else {
-                        System.out.println("Player 2's input is invalid! Please only input [R] [P] or [S]!");
-                    }
                 }
-                else {
-                    System.out.println("Player 1's input is invalid! Please only input [R] [P] or [S]!");
 
-                }
 
 
             System.out.println("Would you like to continue playing? [Y/N]: ");
             stillPlaying = sc.nextLine();
             if (stillPlaying.equalsIgnoreCase("Y")) {
+                validMove1 = false;
+                validMove2 = false;
             }
             else if (stillPlaying.equalsIgnoreCase("N")) {
                 playing = false;
